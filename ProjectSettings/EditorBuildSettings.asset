@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Estacao.unity
     guid: 0f880dd80619d3d4d857512353a657f7
   - enabled: 1
+    path: Assets/Scenes/Creditos.unity
+    guid: bb5e4569be1025e41985117f90d16324
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 434073abe4c679b4f904deac1991ac32
   - enabled: 1
