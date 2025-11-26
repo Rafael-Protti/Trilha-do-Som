@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c9f76fa587726324a9347bcbc3e2e75c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106586
+  packageName: Smart SNAP Buttons for Inspector
+  packageVersion: 2.0
+  assetPath: Assets/Plugins/Snap Inspector Buttons/SnapModSettings.asset
+  uploadId: 464380

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 17dca8b240f2cb348ace295a4866fb42
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106586
+  packageName: Smart SNAP Buttons for Inspector
+  packageVersion: 2.0
+  assetPath: Assets/Plugins/Snap Inspector Buttons/EM.SnapPlugin.Editor.asmdef
+  uploadId: 464380
