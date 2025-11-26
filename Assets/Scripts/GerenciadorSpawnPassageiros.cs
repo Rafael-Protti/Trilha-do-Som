@@ -98,6 +98,7 @@ public class GerenciadorSpawnPassageiros : MonoBehaviour
         if (ruidoParaSpawn != null && localSpawn != null)
         {
             GameObject passageiro = Instantiate(ruidoParaSpawn, localSpawn.position, localSpawn.rotation);
+            passageiro.GetComponent<AudioSource>().enabled = true;
             passageiro.GetComponent<Movimentoautomático>().enabled = true;
             Debug.Log($"Invocado {ruidoParaSpawn.name} em {localSpawn.name}");
         }

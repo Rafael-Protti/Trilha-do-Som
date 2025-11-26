@@ -7,22 +7,11 @@ public class SomNoObstaculo : MonoBehaviour
     [Header("Configuração de Áudio")]
     public AudioClip[] ruidoObstaculo = new AudioClip[0];
 
-    [Header("Configurações")]
-    public bool ItemEssencial = false;
-
     private AudioSource audioSource;
-    private int Tipo = 0;
     private bool somConfigurado = false;
-
 
     void Start()
     {
-        // Verifica se o item é essencial
-        if (ItemEssencial)
-        {
-            enabled = false;
-            return;
-        }
 
         // Configura o AudioSource
         ConfigurarAudioSource();
@@ -49,7 +38,7 @@ public class SomNoObstaculo : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 1.0f; // Som 3D
         audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
-        audioSource.maxDistance = 250f;
+        audioSource.maxDistance = 150f;
         audioSource.minDistance = 0.01f;
         somConfigurado = true;
     }
@@ -79,7 +68,7 @@ public class SomNoObstaculo : MonoBehaviour
     // Método público para forçar a reprodução do som
     public void TocarSom()
     {
-        if (ItemEssencial && somConfigurado)
+        if (somConfigurado)
         {
             TocarSomAleatorio();
         }
@@ -88,7 +77,6 @@ public class SomNoObstaculo : MonoBehaviour
     // Método para alterar o tipo manualmente
     public void AlterarTipo(int novoTipo)
     {
-        Tipo = novoTipo;
         if (audioSource != null && audioSource.isPlaying)
         {
             audioSource.Stop();

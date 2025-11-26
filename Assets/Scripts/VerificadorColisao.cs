@@ -9,6 +9,8 @@ public class VerificadorColisao : MonoBehaviour
     [Header("Configurações")]
     [SerializeField] private bool debugLog = true;
 
+    private Jogador scriptJogador;
+    private int vidaAnterior;
     private BoxCollider boxCollider;
 
     void Start()
@@ -19,6 +21,16 @@ public class VerificadorColisao : MonoBehaviour
         {
             Debug.LogError("BoxCollider não encontrado neste GameObject!");
         }
+
+        // Busca o script Jogador no mesmo GameObject
+        scriptJogador = GetComponent<Jogador>();
+
+        if (scriptJogador == null)
+        {
+            Debug.LogError("Script Jogador não encontrado no mesmo GameObject!");
+            return;
+        }
+        vidaAnterior = scriptJogador.vida;
     }
 
     void OnTriggerEnter(Collider other)
@@ -62,14 +74,23 @@ public class VerificadorColisao : MonoBehaviour
 
     private void ReduzirVida()
     {
-        vida = Mathf.Max(0, vida - 1);
+        vida = scriptJogador.vida;
 
         // Aqui você pode adicionar mais lógica quando a vida chegar a zero
         if (vida <= 0)
         {
+           scriptJogador.Morrendo();
             Debug.Log("Game Over! Vida zerada.");
             // Adicione aqui lógica de game over se necessário
         }
+
+        if (vida > 0)
+        {
+            vida--;
+            scriptJogador.Trombando();
+        }
+
+        scriptJogador.vida = vida;
     }
 
     private void AdicionarMoeda()

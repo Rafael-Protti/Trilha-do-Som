@@ -67,7 +67,7 @@ public class Jogador : MonoBehaviour
     {
         Debug.Log("Fechando jogo em 5 segundos...");
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
 
         // Fecha o jogo
         FecharAplicacao();

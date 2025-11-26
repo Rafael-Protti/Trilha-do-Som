@@ -91,6 +91,7 @@ public class ItemSpawner : MonoBehaviour
         if (localSpawn != null)
         {
             GameObject novoObstaculo = Instantiate(obstaculo, localSpawn.position, Quaternion.LookRotation(Vector3.left));
+            novoObstaculo.GetComponent<AudioSource>().enabled = true;
             novoObstaculo.GetComponent<Movimentoautomático>().enabled = true;
             Debug.Log($"Obstáculo spawnado em {localSpawn.name}");
         }
