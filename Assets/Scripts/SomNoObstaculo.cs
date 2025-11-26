@@ -1,18 +1,17 @@
 using UnityEngine;
 using System.Collections;
 
-public class SomNoObjeto : MonoBehaviour
+
+public class SomNoObstaculo : MonoBehaviour
 {
-    [Header("Configuração de Grupos de Áudio")]
-    public AudioClip[] ruidos = new AudioClip[0];
+    [Header("Configuração de Áudio")]
+    public AudioClip[] ruidoObstaculo = new AudioClip[0];
 
     [Header("Configurações")]
     public bool ItemEssencial = false;
 
-    [Header("Nome")]
-    public string TipoDoObjeto;
-
     private AudioSource audioSource;
+    private int Tipo = 0;
     private bool somConfigurado = false;
 
 
@@ -24,7 +23,7 @@ public class SomNoObjeto : MonoBehaviour
             enabled = false;
             return;
         }
-        
+
         // Configura o AudioSource
         ConfigurarAudioSource();
 
@@ -50,8 +49,8 @@ public class SomNoObjeto : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 1.0f; // Som 3D
         audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
-        audioSource.maxDistance = 25f;
-        audioSource.minDistance = 1f;
+        audioSource.maxDistance = 250f;
+        audioSource.minDistance = 0.01f;
         somConfigurado = true;
     }
 
@@ -59,20 +58,20 @@ public class SomNoObjeto : MonoBehaviour
     {
         AudioClip clipSelecionado = null;
 
-        if (ruidos != null && ruidos.Length > 0)
-        {
-            clipSelecionado = ruidos[Random.Range(0, ruidos.Length)];
-        }
+        if (ruidoObstaculo != null && ruidoObstaculo.Length > 0)
+            {
+                clipSelecionado = ruidoObstaculo[Random.Range(0, ruidoObstaculo.Length)];
+            }
 
         if (clipSelecionado != null)
         {
             audioSource.clip = clipSelecionado;
             audioSource.Play();
-            Debug.Log($"Tocando som '{clipSelecionado.name}' no objeto '{gameObject.name}' (Tipo: {TipoDoObjeto})");
+            Debug.Log($"Tocando som '{clipSelecionado.name}' no objeto '{gameObject.name}' (Tipo: Obstáculo)");
         }
         else
         {
-            Debug.LogWarning($"Nenhum clip de áudio disponível para o tipo {TipoDoObjeto} no objeto {gameObject.name}");
+            Debug.LogWarning($"Nenhum clip de áudio disponível para o tipo Obstáculos no objeto {gameObject.name}");
             enabled = false;
         }
     }
@@ -89,6 +88,7 @@ public class SomNoObjeto : MonoBehaviour
     // Método para alterar o tipo manualmente
     public void AlterarTipo(int novoTipo)
     {
+        Tipo = novoTipo;
         if (audioSource != null && audioSource.isPlaying)
         {
             audioSource.Stop();
