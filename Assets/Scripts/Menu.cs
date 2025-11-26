@@ -13,8 +13,21 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Creditos");
     }
 
-    public void VoltarCreditos()
+    public void Opcoes()
+    {
+        SceneManager.LoadScene("Opcoes");
+    }
+
+    public void Voltar()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void Sair()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }
