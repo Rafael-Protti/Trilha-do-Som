@@ -1176,7 +1176,7 @@ GameObject:
   - component: {fileID: 979605026}
   m_Layer: 0
   m_Name: moeda
-  m_TagString: Untagged
+  m_TagString: Moeda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2937,7 +2937,7 @@ GameObject:
   - component: {fileID: 2120092326}
   m_Layer: 0
   m_Name: passaro
-  m_TagString: Untagged
+  m_TagString: Passaro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
