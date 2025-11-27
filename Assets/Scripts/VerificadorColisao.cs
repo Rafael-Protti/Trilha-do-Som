@@ -3,14 +3,13 @@ using UnityEngine;
 public class VerificadorColisao : MonoBehaviour
 {
     [Header("Status do Jogador")]
-    [SerializeField] private int vida = 3;
+    [SerializeField] private int vida;
     [SerializeField] private int moeda = 0;
 
     [Header("Configurações")]
     [SerializeField] private bool debugLog = true;
 
     private Jogador scriptJogador;
-    private int vidaAnterior;
     private BoxCollider boxCollider;
 
     void Start()
@@ -30,7 +29,7 @@ public class VerificadorColisao : MonoBehaviour
             Debug.LogError("Script Jogador não encontrado no mesmo GameObject!");
             return;
         }
-        vidaAnterior = scriptJogador.vida;
+        vida = scriptJogador.vida;
     }
 
     void OnTriggerEnter(Collider other)
