@@ -151,6 +151,7 @@ public class ItemSpawner : MonoBehaviour
             novoObstaculo.GetComponent<AudioSource>().enabled = true;
             novoObstaculo.GetComponent<Movimentoautomático>().enabled = true;
             novoObstaculo.GetComponent<SomNoObstaculo>().enabled = true;
+            novoObstaculo.GetComponent<ResonanceAudioSource>().enabled = true;
             Debug.Log($"Obstáculo spawnado em {localSpawn.name}");
         }
 
@@ -180,6 +181,7 @@ public class ItemSpawner : MonoBehaviour
             novaMoeda.GetComponent<AudioSource>().enabled = true;
             novaMoeda.GetComponent<Movimentoautomático>().enabled = true;
             novaMoeda.GetComponent<SomNoObstaculo>().enabled = true;
+            novaMoeda.GetComponent<ResonanceAudioSource>().enabled = true;
             Debug.Log($"Obstáculo spawnado em {localSpawn.name}");
         }
 
@@ -210,6 +212,7 @@ public class ItemSpawner : MonoBehaviour
             novoPassaro.GetComponent<AudioSource>().enabled = true;
             novoPassaro.GetComponent<Movimentoautomático>().enabled = true;
             novoPassaro.GetComponent<SomNoObstaculo>().enabled = true;
+            novoPassaro.GetComponent<ResonanceAudioSource>().enabled = true;
             Debug.Log($"Pássaro spawnado na posição: {localSpawn}");
         }
     }
@@ -226,6 +229,7 @@ public class ItemSpawner : MonoBehaviour
             novoRuido.GetComponent<AudioSource>().enabled = true;
             novoRuido.GetComponent<Movimentoautomático>().enabled = true;
             novoRuido.GetComponent<SomNoObstaculo>().enabled = true;
+            novoRuido.GetComponent<ResonanceAudioSource>().enabled = true;
             Debug.Log($"Pássaro spawnado na posição: {localSpawn}");
         }
     }
@@ -243,6 +247,7 @@ public class ItemSpawner : MonoBehaviour
             novoRuido.GetComponent<AudioSource>().enabled = true;
             novoRuido.GetComponent<Movimentoautomático>().enabled = true;
             novoRuido.GetComponent<SomNoObstaculo>().enabled = true;
+            novoRuido.GetComponent<ResonanceAudioSource>().enabled = true;
             Debug.Log($"Pássaro spawnado na posição: {localSpawn}");
         }
     }

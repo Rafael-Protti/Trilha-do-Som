@@ -1062,6 +1062,7 @@ GameObject:
   - component: {fileID: 752374485}
   - component: {fileID: 752374484}
   - component: {fileID: 752374487}
+  - component: {fileID: 752374488}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1187,6 +1188,26 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &752374488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752374483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113e4aa2cd3db44d1ac0cb7e9794964b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalGainDb: 0
+  occlusionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  stereoSpeakerModeEnabled: 0
+  recorderSeamless: 0
+  recorderSourceTag: Untagged
+  recorderFoldout: 0
 --- !u!4 &801858474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7416548093114980672, guid: 1da142f97159e5749b647a41707a18af, type: 3}
@@ -1296,6 +1317,7 @@ GameObject:
   - component: {fileID: 979605026}
   - component: {fileID: 979605027}
   - component: {fileID: 979605028}
+  - component: {fileID: 979605029}
   m_Layer: 0
   m_Name: moeda
   m_TagString: Moeda
@@ -1511,6 +1533,29 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 20f881c0509a79845aa43282feab12a9, type: 3}
   - {fileID: 8300000, guid: cc5211ef39902434fa0cc006a26846be, type: 3}
   - {fileID: 8300000, guid: cb1b738bbd40b7b449ee5dec7d5edf00, type: 3}
+--- !u!114 &979605029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979605022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e1719799ca4f9b9f5db81449517ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 0
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  nearFieldEffectEnabled: 0
+  nearFieldEffectGain: 1
+  occlusionEnabled: 0
+  occlusionIntensity: 1
+  quality: 2
 --- !u!1001 &999467145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1585,6 +1630,7 @@ GameObject:
   - component: {fileID: 1057347460}
   - component: {fileID: 1057347459}
   - component: {fileID: 1057347461}
+  - component: {fileID: 1057347462}
   m_Layer: 0
   m_Name: ruidoe
   m_TagString: Untagged
@@ -1799,6 +1845,29 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7d0aef3b825ba904ea367a6cce08a30b, type: 3}
   - {fileID: 8300000, guid: a723729f9ef8fc0469fa3e9179057395, type: 3}
   - {fileID: 8300000, guid: cab60293bb3dc034285313234563b456, type: 3}
+--- !u!114 &1057347462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057347455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e1719799ca4f9b9f5db81449517ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 0
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  nearFieldEffectEnabled: 0
+  nearFieldEffectGain: 1
+  occlusionEnabled: 0
+  occlusionIntensity: 1
+  quality: 2
 --- !u!1 &1068675964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,6 +1881,7 @@ GameObject:
   - component: {fileID: 1068675965}
   - component: {fileID: 1068675970}
   - component: {fileID: 1068675968}
+  - component: {fileID: 1068675971}
   m_Layer: 0
   m_Name: obstaculo
   m_TagString: Untagged
@@ -2055,6 +2125,29 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d6eff572218096a4c8083a041742af99, type: 3}
   - {fileID: 8300000, guid: 09c441b44e30dcf448f80ce390396ba3, type: 3}
   - {fileID: 8300000, guid: 4b3823d8819ee824c9a2d4a698524ecd, type: 3}
+--- !u!114 &1068675971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068675964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e1719799ca4f9b9f5db81449517ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 0
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  nearFieldEffectEnabled: 0
+  nearFieldEffectGain: 1
+  occlusionEnabled: 0
+  occlusionIntensity: 1
+  quality: 2
 --- !u!1 &1118357168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,6 +2330,7 @@ GameObject:
   - component: {fileID: 1160685620}
   - component: {fileID: 1160685619}
   - component: {fileID: 1160685621}
+  - component: {fileID: 1160685622}
   m_Layer: 0
   m_Name: ruidod
   m_TagString: Untagged
@@ -2449,6 +2543,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ruidoObstaculo:
   - {fileID: 8300000, guid: cadc224ad18bffb478ee56cec6c58471, type: 3}
+--- !u!114 &1160685622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160685615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e1719799ca4f9b9f5db81449517ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 0
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  nearFieldEffectEnabled: 0
+  nearFieldEffectGain: 1
+  occlusionEnabled: 0
+  occlusionIntensity: 1
+  quality: 2
 --- !u!1 &1170938058
 GameObject:
   m_ObjectHideFlags: 0
@@ -3189,6 +3306,7 @@ GameObject:
   - component: {fileID: 2120092327}
   - component: {fileID: 2120092326}
   - component: {fileID: 2120092328}
+  - component: {fileID: 2120092329}
   m_Layer: 0
   m_Name: passaro
   m_TagString: Untagged
@@ -3409,6 +3527,29 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 546585d45003d354f8a28c5c865716e9, type: 3}
   - {fileID: 8300000, guid: c2259058c3aff574299f3f2d616492a2, type: 3}
   - {fileID: 8300000, guid: 6f12f68a78ed62547bbb118f1c81c29a, type: 3}
+--- !u!114 &2120092329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120092322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e1719799ca4f9b9f5db81449517ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 0
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  nearFieldEffectEnabled: 0
+  nearFieldEffectGain: 1
+  occlusionEnabled: 0
+  occlusionIntensity: 1
+  quality: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
