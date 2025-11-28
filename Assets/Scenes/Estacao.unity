@@ -2406,7 +2406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 4
-  distanciaMaxima: 150
+  distanciaMaxima: 250
   ItemEssencial: 0
 --- !u!82 &1057347460
 AudioSource:
@@ -3122,7 +3122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 4
-  distanciaMaxima: 150
+  distanciaMaxima: 250
   ItemEssencial: 0
 --- !u!82 &1160685620
 AudioSource:
