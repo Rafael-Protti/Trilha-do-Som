@@ -109,21 +109,21 @@ public class MoveJogador : MonoBehaviour
         // Teclas para esquerda: A ou Seta Esquerda
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            movendoEsquerda = false;
+            movendoEsquerda = true;
         }
         else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            movendoEsquerda = true;
+            movendoEsquerda = false;
         }
 
         // Teclas para direita: D ou Seta Direita
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            movendoDireita = false;
+            movendoDireita = true;
         }
         else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
         {
-            movendoDireita = true;
+            movendoDireita = false;
         }
     }
 
@@ -134,13 +134,13 @@ public class MoveJogador : MonoBehaviour
 
         if (direcionalHorizontal < -0.5f)
         {
-            movendoEsquerda = false;
-            movendoDireita = true;
+            movendoEsquerda = true;
+            movendoDireita = false;
         }
         else if (direcionalHorizontal > 0.5f)
         {
-            movendoDireita = false;
-            movendoEsquerda = true;
+            movendoDireita = true;
+            movendoEsquerda = false;
         }
         else
         {

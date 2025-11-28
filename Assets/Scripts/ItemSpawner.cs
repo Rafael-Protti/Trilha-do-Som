@@ -9,6 +9,7 @@ public class ItemSpawner : MonoBehaviour
     public GameObject passaro;
     public GameObject ruidoE;
     public GameObject ruidoD;
+    public GameObject chegadaFinal;
 
     [Header("Locais de Spawn dos obstaculos")]
     public Transform localSpawnC0;
@@ -27,6 +28,8 @@ public class ItemSpawner : MonoBehaviour
     public Transform localSpawnD4;
     public Transform localSpawnD5;
     public Transform localSpawnD6;
+    [Header("Local de Spawn da chegada")]
+    public Transform localSpawnChegada;
 
     [Header("Configurações")]
     public float intervaloMoedas = 2f;
@@ -64,6 +67,7 @@ public class ItemSpawner : MonoBehaviour
 
         SpawnarObstaculoManual();
         SpawnarRuidosManual();
+        SpawnarChegada();
 
 
         Debug.Log("Spawner de itens iniciado");
@@ -154,20 +158,6 @@ public class ItemSpawner : MonoBehaviour
             novoObstaculo.GetComponent<ResonanceAudioSource>().enabled = true;
             Debug.Log($"Obstáculo spawnado em {localSpawn.name}");
         }
-
-        if (moeda == null || !executando) return;
-
-        localSpawn = SelecionarLocalObstaculoAleatorio();
-
-        if (localSpawn != null)
-        {
-            moedaAtual = Instantiate(moeda, localSpawn.position, Quaternion.LookRotation(Vector3.left));
-            Transform instanciado = moedaAtual.transform;
-            instanciado.GetComponent<Movimentoautomático>().enabled = true;
-            //moedaAtual.GetComponent<Movimentoautomático>().ItemEssencial = false;
-
-            Debug.Log($"Moeda spawnada na posição: {localSpawn}");
-        }
     }
 
     private void SpawnarMoedas()
@@ -234,7 +224,6 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-
     private void SpawnarRuidosD()
     {
         if (passaro == null) return;
@@ -249,6 +238,22 @@ public class ItemSpawner : MonoBehaviour
             novoRuido.GetComponent<SomNoObstaculo>().enabled = true;
             novoRuido.GetComponent<ResonanceAudioSource>().enabled = true;
             Debug.Log($"Pássaro spawnado na posição: {localSpawn}");
+        }
+    }
+
+    private void SpawnarChegada()
+    {
+        if (obstaculo == null) return;
+
+        Transform localSpawn = localSpawnChegada;
+        if (localSpawn != null)
+        {
+            GameObject chegada = Instantiate(chegadaFinal, localSpawn.position, Quaternion.LookRotation(Vector3.forward));
+            chegada.GetComponent<AudioSource>().enabled = true;
+            chegada.GetComponent<Movimentoautomático>().enabled = true;
+            chegada.GetComponent<SomNoObstaculo>().enabled = true;
+            chegada.GetComponent<ResonanceAudioSource>().enabled = true;
+            Debug.Log($"Obstáculo spawnado em {localSpawn.name}");
         }
     }
 

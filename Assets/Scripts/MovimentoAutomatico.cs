@@ -30,8 +30,8 @@ public class Movimentoautomático : MonoBehaviour
     {
         if (!movimentoAtivo) return;
 
-        // Move o objeto na direção Z positivo
-        Vector3 movimento = Vector3.forward * velocidade * Time.deltaTime;
+        // Move o objeto na direção Z negativo
+        Vector3 movimento = Vector3.back * velocidade * Time.deltaTime;
         transform.Translate(movimento, Space.World);
 
         // Calcula a distância percorrida
@@ -59,7 +59,7 @@ public class Movimentoautomático : MonoBehaviour
         }
 
         // Calcula a posição final baseada na distância máxima
-        Vector3 posicaoFinal = posicaoInicial + Vector3.forward * distanciaMaxima;
+        Vector3 posicaoFinal = posicaoInicial + Vector3.back * distanciaMaxima;
 
         // Desenha a linha da trajetória
         Gizmos.color = Color.red;

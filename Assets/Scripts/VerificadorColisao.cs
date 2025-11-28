@@ -57,17 +57,25 @@ public class VerificadorColisao : MonoBehaviour
             ReduzirVida();
             if (debugLog) Debug.Log($"Obstáculo detectado! Vida: {vida}");
         }
+
         // Verifica se contém "moeda" no nome
-        else if (nomeObjeto.Contains("moeda"))
+        if (nomeObjeto.Contains("moeda"))
         {
             AdicionarMoeda();
             if (debugLog) Debug.Log($"Moeda coletada! Total: {moeda}");
         }
+
         // Verifica se contém "passaro" no nome
-        else if (nomeObjeto.Contains("passaro"))
+        if (nomeObjeto.Contains("passaro"))
         {
             if (debugLog) Debug.Log("Pássaro detectado - Nenhuma ação tomada");
-            // Não faz nada, conforme solicitado
+        }
+
+        // Verifica se contém "chegada" no nome
+        if (nomeObjeto.Contains("ChegadaFinal"))
+        {
+            if (debugLog) Debug.Log("Você chegou ao final");
+            Vitoria();
         }
     }
 
@@ -90,6 +98,12 @@ public class VerificadorColisao : MonoBehaviour
         }
 
         scriptJogador.vida = vida;
+    }
+
+    private void Vitoria()
+    {
+        Debug.Log("Você venceu o jogo!");
+        scriptJogador.Vencendo();
     }
 
     private void AdicionarMoeda()
