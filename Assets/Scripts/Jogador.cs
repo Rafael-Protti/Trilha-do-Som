@@ -10,6 +10,7 @@ public class Jogador : MonoBehaviour
     public AudioClip somTrombando;
     public AudioClip somMorrendo;
     public AudioClip somVitoria;
+    public AudioClip somColetando;
 
     [Header("Componentes")]
     private AudioSource audioSource;
@@ -81,6 +82,23 @@ public class Jogador : MonoBehaviour
 
         // Inicia a corrotina para fechar o jogo após 5 segundos
         StartCoroutine(FecharJogo());
+    }
+
+    // Módulo Vencendo
+    public void Coletando()
+    {
+        Debug.Log("Morrendo! Fim de jogo.");
+
+        // Toca o som de vencendo se configurado
+        if (somMorrendo != null)
+        {
+            audioSource.PlayOneShot(somColetando);
+
+        }
+        else
+        {
+            Debug.LogWarning("Som de morrendo não configurado!");
+        }
     }
 
     private IEnumerator FecharJogo()

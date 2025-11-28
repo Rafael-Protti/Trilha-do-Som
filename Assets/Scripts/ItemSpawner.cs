@@ -22,12 +22,27 @@ public class ItemSpawner : MonoBehaviour
     public Transform localSpawnE4;
     public Transform localSpawnE5;
     public Transform localSpawnE6;
+    public Transform localSpawnE7;
+    public Transform localSpawnE8;
+    public Transform localSpawnE9;
+    public Transform localSpawnE10;
+    public Transform localSpawnE11;
+    public Transform localSpawnE12;
     public Transform localSpawnD1;
     public Transform localSpawnD2;
     public Transform localSpawnD3;
     public Transform localSpawnD4;
     public Transform localSpawnD5;
     public Transform localSpawnD6;
+    public Transform localSpawnD7;
+    public Transform localSpawnD8;
+    public Transform localSpawnD9;
+    public Transform localSpawnD10;
+    public Transform localSpawnD11;
+    public Transform localSpawnD12;
+    [Header("Locais de Spawn da moeda")]
+    public Transform localSpawnM0;
+    public Transform localSpawnM1;
     [Header("Local de Spawn da chegada")]
     public Transform localSpawnChegada;
 
@@ -58,7 +73,6 @@ public class ItemSpawner : MonoBehaviour
         if (executando) return;
 
         executando = true;
-        SpawnarRuidosManual();
 
         corrotinaObstaculos = StartCoroutine(CorrotinaObstaculos());
         corrotinaPassaros = StartCoroutine(CorrotinaPassaros());
@@ -68,6 +82,8 @@ public class ItemSpawner : MonoBehaviour
         SpawnarObstaculoManual();
         SpawnarRuidosManual();
         SpawnarChegada();
+        SpawnarRuidosE();
+        SpawnarRuidosD();
 
 
         Debug.Log("Spawner de itens iniciado");
@@ -134,7 +150,7 @@ public class ItemSpawner : MonoBehaviour
     {
         while (executando)
         {
-            yield return new WaitForSeconds(10f * intervaloRuidos);
+            yield return new WaitForSeconds(5f * intervaloRuidos);
 
             if (executando)
             {
@@ -164,7 +180,7 @@ public class ItemSpawner : MonoBehaviour
     {
         if (obstaculo == null) return;
 
-        Transform localSpawn = SelecionarLocalObstaculoAleatorio();
+        Transform localSpawn = SelecionarLocalMoedaAleatorio();
         if (localSpawn != null)
         {
             GameObject novaMoeda = Instantiate(moeda, localSpawn.position, Quaternion.LookRotation(Vector3.left));
@@ -215,7 +231,7 @@ public class ItemSpawner : MonoBehaviour
 
         if (localSpawn != null)
         {
-            GameObject novoRuido = Instantiate(passaro, localSpawn.position, Quaternion.LookRotation(Vector3.left));
+            GameObject novoRuido = Instantiate(ruidoE, localSpawn.position, Quaternion.LookRotation(Vector3.left));
             novoRuido.GetComponent<AudioSource>().enabled = true;
             novoRuido.GetComponent<Movimentoautomático>().enabled = true;
             novoRuido.GetComponent<SomNoObstaculo>().enabled = true;
@@ -232,7 +248,7 @@ public class ItemSpawner : MonoBehaviour
 
         if (localSpawn != null)
         {
-            GameObject novoRuido = Instantiate(passaro, localSpawn.position, Quaternion.LookRotation(Vector3.left));
+            GameObject novoRuido = Instantiate(ruidoD, localSpawn.position, Quaternion.LookRotation(Vector3.left));
             novoRuido.GetComponent<AudioSource>().enabled = true;
             novoRuido.GetComponent<Movimentoautomático>().enabled = true;
             novoRuido.GetComponent<SomNoObstaculo>().enabled = true;
@@ -264,6 +280,13 @@ public class ItemSpawner : MonoBehaviour
         return locaisValidos;
     }
 
+    private Transform SelecionarLocalMoedaAleatorio()
+    {
+        Transform[] locais = { localSpawnM0, localSpawnM1 };
+        Transform locaisValidos = locais[Random.Range(0, locais.Length)];
+        return locaisValidos;
+    }
+
     private Transform SelecionarLocalPassaroAleatorio()
     {
         Transform[] locais = { localSpawnD1, localSpawnE1 };
@@ -273,14 +296,14 @@ public class ItemSpawner : MonoBehaviour
 
     private Transform SelecionarLocalRuidosEAleatorio()
     {
-        Transform[] locais = { localSpawnE1, localSpawnE2, localSpawnE3, localSpawnE4, localSpawnE5, localSpawnE6 };
+        Transform[] locais = { localSpawnE1, localSpawnE2, localSpawnE3, localSpawnE4, localSpawnE5, localSpawnE6, localSpawnE7, localSpawnE8, localSpawnE9, localSpawnE10, localSpawnE11, localSpawnE12 };
         Transform locaisValidos = locais[Random.Range(0, locais.Length)];
         return locaisValidos;
     }
 
     private Transform SelecionarLocalRuidosDAleatorio()
     {
-        Transform[] locais = { localSpawnD1, localSpawnD2, localSpawnD3, localSpawnD4, localSpawnD5, localSpawnD6 };
+        Transform[] locais = { localSpawnD1, localSpawnD2, localSpawnD3, localSpawnD4, localSpawnD5, localSpawnD6, localSpawnD7, localSpawnD8, localSpawnD9, localSpawnD10, localSpawnD11, localSpawnD12 };
         Transform locaisValidos = locais[Random.Range(0, locais.Length)];
         return locaisValidos;
     }
