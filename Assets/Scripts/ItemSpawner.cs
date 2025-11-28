@@ -147,7 +147,7 @@ public class ItemSpawner : MonoBehaviour
         Transform localSpawn = SelecionarLocalObstaculoAleatorio();
         if (localSpawn != null)
         {
-            GameObject novoObstaculo = Instantiate(obstaculo, localSpawn.position, Quaternion.LookRotation(Vector3.left));
+            GameObject novoObstaculo = Instantiate(obstaculo, localSpawn.position, Quaternion.LookRotation(Vector3.forward));
             novoObstaculo.GetComponent<AudioSource>().enabled = true;
             novoObstaculo.GetComponent<Movimentoautomático>().enabled = true;
             novoObstaculo.GetComponent<SomNoObstaculo>().enabled = true;
