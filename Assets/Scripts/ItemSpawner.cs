@@ -287,7 +287,7 @@ public class ItemSpawner : MonoBehaviour
             -jogador.transform.position.x, // Posição X contrária
             localSpawnM.position.y,
             localSpawnM.position.z
-        );
+
     }
 
     // Seleciona um local de spawn C mas com a posição X do jogador

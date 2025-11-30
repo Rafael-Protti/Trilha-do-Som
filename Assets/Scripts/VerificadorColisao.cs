@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class VerificadorColisao : MonoBehaviour
 {
@@ -11,6 +13,10 @@ public class VerificadorColisao : MonoBehaviour
 
     private Jogador scriptJogador;
     private BoxCollider boxCollider;
+
+
+    public AudioClip audio;
+    AudioSource audioSource;
 
     void Start()
     {
@@ -30,6 +36,9 @@ public class VerificadorColisao : MonoBehaviour
             return;
         }
         vida = scriptJogador.vida;
+
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -63,6 +72,7 @@ public class VerificadorColisao : MonoBehaviour
         {
             AdicionarMoeda();
             if (debugLog) Debug.Log($"Moeda coletada! Total: {moeda}");
+            audioSource.PlayOneShot(audio);
         }
 
         // Verifica se contém "passaro" no nome
@@ -72,7 +82,7 @@ public class VerificadorColisao : MonoBehaviour
         }
 
         // Verifica se contém "chegada" no nome
-        if (nomeObjeto.Contains("ChegadaFinal"))
+        if (nomeObjeto.Contains("chegadafinal"))
         {
             if (debugLog) Debug.Log("Você chegou ao final");
             Vitoria();
@@ -103,7 +113,8 @@ public class VerificadorColisao : MonoBehaviour
     private void Vitoria()
     {
         Debug.Log("Você venceu o jogo!");
-        scriptJogador.Vencendo();
+        // scriptJogador.Vencendo();
+        SceneManager.LoadScene("CreditosFinal");
     }
 
     private void AdicionarMoeda()
