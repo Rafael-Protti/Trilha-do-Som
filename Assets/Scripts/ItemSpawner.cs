@@ -62,6 +62,9 @@ public class ItemSpawner : MonoBehaviour
     private Coroutine corrotinaMoedas;
     private Coroutine corrotinaPassaros;
     private Coroutine corrotinaRuidos;
+	
+	
+    private Vector3 novaPosicao;
 
     void Start()
     {
@@ -282,7 +285,6 @@ public class ItemSpawner : MonoBehaviour
             return null;
         }
 
-        Vector3 novaPosicao;
 
         // Cria uma nova posição mantendo Y e Z do localSpawnM, mas com X contrário ao jogador
             novaPosicao = new Vector3(
@@ -297,18 +299,19 @@ public class ItemSpawner : MonoBehaviour
     // NOVO MÉTODO: Seleciona um local de spawn C mas com a posição X do jogador
     private Transform SelecionarLocalObstaculoComPosicaoJogador()
     {
+		/*
         if (jogador == null)
         {
             Debug.LogWarning("Jogador não encontrado, usando spawn aleatório");
             return SelecionarLocalObstaculoAleatorio();
         }
-        /*
+        
         Transform[] locais = { localSpawnC, localSpawnC1, localSpawnC2 };
         Transform localSelecionado = locais[Random.Range(0, locais.Length)];
         */
 
         // Cria uma nova posição mantendo Y e Z do local de spawn, mas com X do jogador
-        Vector3 novaPosicao = new Vector3(
+			novaPosicao = new Vector3(
             jogador.transform.position.x,
             localSpawnC.position.y,
             localSpawnC.position.z
