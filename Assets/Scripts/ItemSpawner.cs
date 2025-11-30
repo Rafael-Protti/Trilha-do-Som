@@ -11,10 +11,10 @@ public class ItemSpawner : MonoBehaviour
     public GameObject ruidoD;
     public GameObject chegadaFinal;
 
-    [Header("Locais de Spawn dos obstaculos")]
+    [Header("Local de Spawn dos obstaculos")]
     public Transform localSpawnC;
 
-    [Header("Locais de Spawn da moeda")]
+    [Header("Local de Spawn da moeda")]
     public Transform localSpawnM;
 
     [Header("Locais de Spawn dos ruidos")]
@@ -174,33 +174,29 @@ public class ItemSpawner : MonoBehaviour
     {
         if (obstaculo == null) return;
 
-        Transform localSpawn = SelecionarLocalObstaculoComPosicaoJogador();
-        if (localSpawn != null)
-        {
-            GameObject novoObstaculo = Instantiate(obstaculo, localSpawn.position, Quaternion.LookRotation(Vector3.forward));
-            novoObstaculo.GetComponent<AudioSource>().enabled = true;
-            novoObstaculo.GetComponent<Movimentoautomático>().enabled = true;
-            novoObstaculo.GetComponent<SomNoObstaculo>().enabled = true;
-            novoObstaculo.GetComponent<ResonanceAudioSource>().enabled = true;
-            Debug.Log($"Obstáculo spawnado em {localSpawn.name} com posição X do jogador");
-        }
+        SelecionarLocalObstaculoComPosicaoJogador();
+
+        GameObject novoObstaculo = Instantiate(obstaculo, novaPosicao, Quaternion.LookRotation(Vector3.forward));
+        novoObstaculo.GetComponent<AudioSource>().enabled = true;
+        novoObstaculo.GetComponent<SomNoObstaculo>().enabled = true;
+        novoObstaculo.GetComponent<Movimentoautomático>().enabled = true;
+        novoObstaculo.GetComponent<ResonanceAudioSource>().enabled = true;
+        Debug.Log($"Obstáculo spawnado em {localSpawn.name} com posição X do jogador");
     }
 
     private void SpawnarMoedas()
     {
         if (moeda == null || !executando) return;
 
-        Transform localSpawn = SelecionarLocalMoedaComPosicaoContraria();
+        SelecionarLocalMoedaComPosicaoContraria();
 
-        if (localSpawn != null)
-        {
-            moedaAtual = Instantiate(moeda, localSpawn.position, Quaternion.LookRotation(Vector3.left));
-            Transform instanciado = moedaAtual.transform;
-            instanciado.GetComponent<Movimentoautomático>().enabled = true;
-            //moedaAtual.GetComponent<Movimentoautomático>().ItemEssencial = false;
-
-            Debug.Log($"Moeda spawnada na posição contrária ao jogador: {localSpawn.position}");
-        }
+        moedaAtual = Instantiate(moeda, novaPosicao, Quaternion.LookRotation(Vector3.left));
+        Transform instanciado = moedaAtual.transform;
+        instanciado.GetComponent<Movimentoautomático>().enabled = true;
+        instanciado.GetComponent<AudioSource>().enabled = true;
+        instanciado.GetComponent<ResonanceAudioSource>().enabled = true;
+        instanciado.GetComponent<SomNoObstaculo>().enabled = true;
+        Debug.Log($"Moeda spawnada na posição contrária ao jogador: {localSpawn.position}");
     }
 
     private void SpawnarPassaro()
@@ -270,7 +266,7 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    // NOVO MÉTODO: Seleciona o localSpawnM mas com a posição X contrária ao jogador
+    // Seleciona o localSpawnM mas com a posição X contrária ao jogador
     private Transform SelecionarLocalMoedaComPosicaoContraria()
     {
         if (jogador == null || jogador.transform.position.x == 0)
@@ -287,54 +283,23 @@ public class ItemSpawner : MonoBehaviour
 
 
         // Cria uma nova posição mantendo Y e Z do localSpawnM, mas com X contrário ao jogador
-            novaPosicao = new Vector3(
-                -jogador.transform.position.x, // Posição X contrária
-                localSpawnM.position.y,
-                localSpawnM.position.z
-            );
-
-        return novaPosicao;
+        novaPosicao = new Vector3(
+            -jogador.transform.position.x, // Posição X contrária
+            localSpawnM.position.y,
+            localSpawnM.position.z
+        );
     }
 
-    // NOVO MÉTODO: Seleciona um local de spawn C mas com a posição X do jogador
+    // Seleciona um local de spawn C mas com a posição X do jogador
     private Transform SelecionarLocalObstaculoComPosicaoJogador()
     {
-		/*
-        if (jogador == null)
-        {
-            Debug.LogWarning("Jogador não encontrado, usando spawn aleatório");
-            return SelecionarLocalObstaculoAleatorio();
-        }
-        
-        Transform[] locais = { localSpawnC, localSpawnC1, localSpawnC2 };
-        Transform localSelecionado = locais[Random.Range(0, locais.Length)];
-        */
-
         // Cria uma nova posição mantendo Y e Z do local de spawn, mas com X do jogador
 			novaPosicao = new Vector3(
             jogador.transform.position.x,
             localSpawnC.position.y,
             localSpawnC.position.z
         );
-
-        return novaPosicao;
     }
-
-    /* Método original mantido para outros usos
-    private Transform SelecionarLocalObstaculoAleatorio()
-    {
-        Transform[] locais = { localSpawnC, localSpawnC1, localSpawnC2 };
-        Transform locaisValidos = locais[Random.Range(0, locais.Length)];
-        return locaisValidos;
-    }
-
-    private Transform SelecionarLocalMoedaAleatorio()
-    {
-        Transform[] locais = { localSpawnM, localSpawnM1 };
-        Transform locaisValidos = locais[Random.Range(0, locais.Length)];
-        return locaisValidos;
-    }
-    */
 
     private Transform SelecionarLocalPassaroAleatorio()
     {
