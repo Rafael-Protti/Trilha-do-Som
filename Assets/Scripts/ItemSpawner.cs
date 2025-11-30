@@ -399,8 +399,6 @@ public class ItemSpawner : MonoBehaviour
     private void DesenharLocaisObstaculos()
     {
         DesenharGizmoSpawn(localSpawnC, Color.red, "Obstáculo 0");
-        DesenharGizmoSpawn(localSpawnC1, Color.red, "Obstáculo 1");
-        DesenharGizmoSpawn(localSpawnC2, Color.red, "Obstáculo 2");
     }
 
     private void DesenharLocaisPassaros()
