@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class ColetaPorColisao : MonoBehaviour
 {
-    public AudioSource audio;
+    public AudioClip audio;
+    AudioSource audioSource;
     void Start()
     {
         
@@ -16,7 +17,7 @@ public class ColetaPorColisao : MonoBehaviour
         if (collision.gameObject.CompareTag("Moeda"))
         {
             Debug.Log("Coleta de Moeada");
-            audio.Play();
+            audioSource.PlayOneShot(audio);
         }
 
         if (collision.gameObject.CompareTag("Passaro"))

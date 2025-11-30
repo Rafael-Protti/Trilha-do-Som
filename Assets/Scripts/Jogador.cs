@@ -11,7 +11,7 @@ public class Jogador : MonoBehaviour
     public AudioClip somMorrendo;
     public AudioClip somVitoria;
     public AudioClip somColetando;
-
+    public AudioClip somTutorial;
     [Header("Componentes")]
     private AudioSource audioSource;
 
@@ -25,6 +25,7 @@ public class Jogador : MonoBehaviour
         }
 
         Debug.Log($"Jogador iniciado com {vida} vidas");
+        audioSource.PlayOneShot(somTutorial);
     }
 
     // Módulo Trombando - executado quando há colisão mas ainda tem vida

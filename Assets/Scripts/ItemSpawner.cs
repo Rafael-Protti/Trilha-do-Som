@@ -287,10 +287,10 @@ public class ItemSpawner : MonoBehaviour
 
 
         // Cria uma nova posição mantendo Y e Z do localSpawnM, mas com X contrário ao jogador
-            novaPosicao = new Vector3(
-                -jogador.transform.position.x, // Posição X contrária
-                localSpawnM.position.y,
-                localSpawnM.position.z
+        novaPosicao = new Vector3(
+            -jogador.transform.position.x, // Posição X contrária
+            localSpawnM.position.y,
+            localSpawnM.position.z
             );
 
         return novaPosicao;
