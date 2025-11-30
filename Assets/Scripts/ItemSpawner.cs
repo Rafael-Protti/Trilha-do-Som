@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using System.Collections;
 
 public class ItemSpawner : MonoBehaviour
@@ -12,9 +12,11 @@ public class ItemSpawner : MonoBehaviour
     public GameObject chegadaFinal;
 
     [Header("Locais de Spawn dos obstaculos")]
-    public Transform localSpawnC0;
-    public Transform localSpawnC1;
-    public Transform localSpawnC2;
+    public Transform localSpawnC;
+
+    [Header("Locais de Spawn da moeda")]
+    public Transform localSpawnM;
+
     [Header("Locais de Spawn dos ruidos")]
     public Transform localSpawnE1;
     public Transform localSpawnE2;
@@ -40,13 +42,11 @@ public class ItemSpawner : MonoBehaviour
     public Transform localSpawnD10;
     public Transform localSpawnD11;
     public Transform localSpawnD12;
-    [Header("Locais de Spawn da moeda")]
-    public Transform localSpawnM0;
-    public Transform localSpawnM1;
+    
     [Header("Local de Spawn da chegada")]
     public Transform localSpawnChegada;
 
-    [Header("ConfiguraÁıes")]
+    [Header("Configura√ß≈ëes")]
     public float intervaloMoedas = 2f;
     public float intervaloObstaculos = 2f;
     public float intervaloPassaros = 1f;
@@ -56,6 +56,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] private bool executando = false;
     [SerializeField] private GameObject moedaAtual;
 
+    private GameObject jogador;
     private Camera cameraPrincipal;
     private Coroutine corrotinaObstaculos;
     private Coroutine corrotinaMoedas;
@@ -65,6 +66,13 @@ public class ItemSpawner : MonoBehaviour
     void Start()
     {
         cameraPrincipal = Camera.main;
+        // Encontrar o objeto Jogador automaticamente
+        jogador = GameObject.Find("Jogador");
+        if (jogador == null)
+        {
+            Debug.LogError("Objeto Jogador n√£o encontrado na cena!");
+        }
+
         IniciarSpawn();
     }
 
@@ -84,7 +92,6 @@ public class ItemSpawner : MonoBehaviour
         SpawnarChegada();
         SpawnarRuidosE();
         SpawnarRuidosD();
-
 
         Debug.Log("Spawner de itens iniciado");
     }
@@ -164,45 +171,32 @@ public class ItemSpawner : MonoBehaviour
     {
         if (obstaculo == null) return;
 
-        Transform localSpawn = SelecionarLocalObstaculoAleatorio();
+        Transform localSpawn = SelecionarLocalObstaculoComPosicaoJogador();
         if (localSpawn != null)
         {
             GameObject novoObstaculo = Instantiate(obstaculo, localSpawn.position, Quaternion.LookRotation(Vector3.forward));
             novoObstaculo.GetComponent<AudioSource>().enabled = true;
-            novoObstaculo.GetComponent<Movimentoautom·tico>().enabled = true;
+            novoObstaculo.GetComponent<Movimentoautom√°tico>().enabled = true;
             novoObstaculo.GetComponent<SomNoObstaculo>().enabled = true;
             novoObstaculo.GetComponent<ResonanceAudioSource>().enabled = true;
-            Debug.Log($"Obst·culo spawnado em {localSpawn.name}");
+            Debug.Log($"Obst√°culo spawnado em {localSpawn.name} com posi√ß√£o X do jogador");
         }
     }
 
     private void SpawnarMoedas()
     {
-        if (obstaculo == null) return;
-
-        Transform localSpawn = SelecionarLocalMoedaAleatorio();
-        if (localSpawn != null)
-        {
-            GameObject novaMoeda = Instantiate(moeda, localSpawn.position, Quaternion.LookRotation(Vector3.left));
-            novaMoeda.GetComponent<AudioSource>().enabled = true;
-            novaMoeda.GetComponent<Movimentoautom·tico>().enabled = true;
-            novaMoeda.GetComponent<SomNoObstaculo>().enabled = true;
-            novaMoeda.GetComponent<ResonanceAudioSource>().enabled = true;
-            Debug.Log($"Obst·culo spawnado em {localSpawn.name}");
-        }
-
         if (moeda == null || !executando) return;
 
-        localSpawn = SelecionarLocalObstaculoAleatorio();
+        Transform localSpawn = SelecionarLocalMoedaComPosicaoContraria();
 
         if (localSpawn != null)
         {
             moedaAtual = Instantiate(moeda, localSpawn.position, Quaternion.LookRotation(Vector3.left));
             Transform instanciado = moedaAtual.transform;
-            instanciado.GetComponent<Movimentoautom·tico>().enabled = true;
-            //moedaAtual.GetComponent<Movimentoautom·tico>().ItemEssencial = false;
+            instanciado.GetComponent<Movimentoautom√°tico>().enabled = true;
+            //moedaAtual.GetComponent<Movimentoautom√°tico>().ItemEssencial = false;
 
-            Debug.Log($"Moeda spawnada na posiÁ„o: {localSpawn}");
+            Debug.Log($"Moeda spawnada na posi√ß√£o contr√°ria ao jogador: {localSpawn.position}");
         }
     }
 
@@ -216,10 +210,10 @@ public class ItemSpawner : MonoBehaviour
         {
             GameObject novoPassaro = Instantiate(passaro, localSpawn.position, Quaternion.LookRotation(Vector3.left));
             novoPassaro.GetComponent<AudioSource>().enabled = true;
-            novoPassaro.GetComponent<Movimentoautom·tico>().enabled = true;
+            novoPassaro.GetComponent<Movimentoautom√°tico>().enabled = true;
             novoPassaro.GetComponent<SomNoObstaculo>().enabled = true;
             novoPassaro.GetComponent<ResonanceAudioSource>().enabled = true;
-            Debug.Log($"P·ssaro spawnado na posiÁ„o: {localSpawn}");
+            Debug.Log($"P√°ssaro spawnado na posi√ßƒÉo: {localSpawn}");
         }
     }
 
@@ -233,10 +227,10 @@ public class ItemSpawner : MonoBehaviour
         {
             GameObject novoRuido = Instantiate(ruidoE, localSpawn.position, Quaternion.LookRotation(Vector3.left));
             novoRuido.GetComponent<AudioSource>().enabled = true;
-            novoRuido.GetComponent<Movimentoautom·tico>().enabled = true;
+            novoRuido.GetComponent<Movimentoautom√°tico>().enabled = true;
             novoRuido.GetComponent<SomNoObstaculo>().enabled = true;
             novoRuido.GetComponent<ResonanceAudioSource>().enabled = true;
-            Debug.Log($"P·ssaro spawnado na posiÁ„o: {localSpawn}");
+            Debug.Log($"P√°ssaro spawnado na posi√ßƒÉo: {localSpawn}");
         }
     }
 
@@ -250,10 +244,10 @@ public class ItemSpawner : MonoBehaviour
         {
             GameObject novoRuido = Instantiate(ruidoD, localSpawn.position, Quaternion.LookRotation(Vector3.left));
             novoRuido.GetComponent<AudioSource>().enabled = true;
-            novoRuido.GetComponent<Movimentoautom·tico>().enabled = true;
+            novoRuido.GetComponent<Movimentoautom√°tico>().enabled = true;
             novoRuido.GetComponent<SomNoObstaculo>().enabled = true;
             novoRuido.GetComponent<ResonanceAudioSource>().enabled = true;
-            Debug.Log($"P·ssaro spawnado na posiÁ„o: {localSpawn}");
+            Debug.Log($"P√°ssaro spawnado na posi√ßƒÉo: {localSpawn}");
         }
     }
 
@@ -266,23 +260,74 @@ public class ItemSpawner : MonoBehaviour
         {
             GameObject chegada = Instantiate(chegadaFinal, localSpawn.position, Quaternion.LookRotation(Vector3.forward));
             chegada.GetComponent<AudioSource>().enabled = true;
-            chegada.GetComponent<Movimentoautom·tico>().enabled = true;
+            chegada.GetComponent<Movimentoautom√°tico>().enabled = true;
             chegada.GetComponent<SomNoObstaculo>().enabled = true;
             chegada.GetComponent<ResonanceAudioSource>().enabled = true;
-            Debug.Log($"Obst·culo spawnado em {localSpawn.name}");
+            Debug.Log($"Obst√°culo spawnado em {localSpawn.name}");
         }
     }
 
+    // NOVO M√âTODO: Seleciona o localSpawnM mas com a posi√ß√£o X contr√°ria ao jogador
+    private Transform SelecionarLocalMoedaComPosicaoContraria()
+    {
+        if (jogador == null || jogador.transform.position.x == 0)
+        {
+            Debug.LogWarning("Jogador n√£o encontrado ou no centro da tela, usando spawn padr√£o");
+            return localSpawnM;
+        }
+
+        if (localSpawnM == null)
+        {
+            Debug.LogError("localSpawnM n√£o est√° atribu√≠do!");
+            return null;
+        }
+
+        Vector3 novaPosicao;
+
+        // Cria uma nova posi√ß√£o mantendo Y e Z do localSpawnM, mas com X contr√°rio ao jogador
+            novaPosicao = new Vector3(
+                -jogador.transform.position.x, // Posi√ß√£o X contr√°ria
+                localSpawnM.position.y,
+                localSpawnM.position.z
+            );
+
+        return novaPosicao;
+    }
+
+    // NOVO M√âTODO: Seleciona um local de spawn C mas com a posi√ß√£o X do jogador
+    private Transform SelecionarLocalObstaculoComPosicaoJogador()
+    {
+        if (jogador == null)
+        {
+            Debug.LogWarning("Jogador n√£o encontrado, usando spawn aleat√≥rio");
+            return SelecionarLocalObstaculoAleatorio();
+        }
+        /*
+        Transform[] locais = { localSpawnC, localSpawnC1, localSpawnC2 };
+        Transform localSelecionado = locais[Random.Range(0, locais.Length)];
+        */
+
+        // Cria uma nova posi√ß√£o mantendo Y e Z do local de spawn, mas com X do jogador
+        Vector3 novaPosicao = new Vector3(
+            jogador.transform.position.x,
+            localSpawnC.position.y,
+            localSpawnC.position.z
+        );
+
+        return novaPosicao;
+    }
+
+    // M√©todo original mantido para outros usos
     private Transform SelecionarLocalObstaculoAleatorio()
     {
-        Transform[] locais = { localSpawnC0, localSpawnC1, localSpawnC2 };
+        Transform[] locais = { localSpawnC, localSpawnC1, localSpawnC2 };
         Transform locaisValidos = locais[Random.Range(0, locais.Length)];
         return locaisValidos;
     }
 
     private Transform SelecionarLocalMoedaAleatorio()
     {
-        Transform[] locais = { localSpawnM0, localSpawnM1 };
+        Transform[] locais = { localSpawnM, localSpawnM1 };
         Transform locaisValidos = locais[Random.Range(0, locais.Length)];
         return locaisValidos;
     }
@@ -308,7 +353,7 @@ public class ItemSpawner : MonoBehaviour
         return locaisValidos;
     }
 
-    // MÈtodos p˙blicos para controle externo
+    // M√©todos p√∫blicos para controle externo
     public void SpawnarObstaculoManual()
     {
         SpawnarObstaculo();
@@ -335,32 +380,30 @@ public class ItemSpawner : MonoBehaviour
         PararSpawn();
     }
 
-    // Gizmos para visualizaÁ„o no Editor
+    // Gizmos para visualiza√ßƒÉo no Editor
     void OnDrawGizmosSelected()
     {
         if (cameraPrincipal == null) return;
 
-        // Desenha ·rea de spawn dos p·ssaros
+        // Desenha √°rea de spawn dos p√°ssaros
         DesenharLocaisPassaros();
 
-        // Desenha locais de spawn dos obst·culos
+        // Desenha locais de spawn dos obst√°culos
         DesenharLocaisObstaculos();
     }
 
     private void DesenharLocaisObstaculos()
     {
-        DesenharGizmoSpawn(localSpawnC0, Color.red, "Obst·culo 0");
-        DesenharGizmoSpawn(localSpawnC1, Color.red, "Obst·culo 1");
-        DesenharGizmoSpawn(localSpawnC2, Color.red, "Obst·culo 2");
+        DesenharGizmoSpawn(localSpawnC, Color.red, "Obst√°culo 0");
+        DesenharGizmoSpawn(localSpawnC1, Color.red, "Obst√°culo 1");
+        DesenharGizmoSpawn(localSpawnC2, Color.red, "Obst√°culo 2");
     }
-
 
     private void DesenharLocaisPassaros()
     {
         DesenharGizmoSpawn(localSpawnD1, Color.red, "Ruidos da direita");
         DesenharGizmoSpawn(localSpawnE1, Color.red, "Ruidos da esquerda");
     }
-
 
     private void DesenharGizmoSpawn(Transform spawn, Color cor, string nome)
     {
