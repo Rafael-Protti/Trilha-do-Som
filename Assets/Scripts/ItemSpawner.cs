@@ -317,7 +317,7 @@ public class ItemSpawner : MonoBehaviour
         return novaPosicao;
     }
 
-    // Método original mantido para outros usos
+    /* Método original mantido para outros usos
     private Transform SelecionarLocalObstaculoAleatorio()
     {
         Transform[] locais = { localSpawnC, localSpawnC1, localSpawnC2 };
@@ -331,6 +331,7 @@ public class ItemSpawner : MonoBehaviour
         Transform locaisValidos = locais[Random.Range(0, locais.Length)];
         return locaisValidos;
     }
+    */
 
     private Transform SelecionarLocalPassaroAleatorio()
     {
