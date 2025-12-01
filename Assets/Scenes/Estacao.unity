@@ -892,7 +892,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 83.620384, y: 20, z: 20}
+  m_Size: {x: 83.620384, y: 20, z: 1}
   m_Center: {x: 1.3278999, y: 0, z: 0}
 --- !u!23 &339980692
 MeshRenderer:
@@ -2081,7 +2081,7 @@ MonoBehaviour:
   localSpawnD12: {fileID: 407904193}
   localSpawnChegada: {fileID: 1398189909}
   intervaloMoedas: 2
-  intervaloObstaculos: 7
+  intervaloObstaculos: 10
   intervaloPassaros: 18
   intervaloRuidos: 0.5
   executando: 0
@@ -2672,7 +2672,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 39.98327, y: 9.360084, z: 10}
+  m_Size: {x: 120, y: 10, z: 1}
   m_Center: {x: 0.13911438, y: 2.554793, z: 0}
 --- !u!82 &1953496958
 AudioSource:

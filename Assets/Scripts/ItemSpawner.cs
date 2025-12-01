@@ -90,7 +90,6 @@ public class ItemSpawner : MonoBehaviour
         corrotinaRuidos = StartCoroutine(CorrotinaRuidos());
         corrotinaMoedas = StartCoroutine(CorrotinaMoedas());
 
-        SpawnarObstaculoManual();
         SpawnarRuidosManual();
         SpawnarChegada();
         SpawnarRuidosE();
