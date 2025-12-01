@@ -181,7 +181,7 @@ public class ItemSpawner : MonoBehaviour
         novoObstaculo.GetComponent<SomNoObstaculo>().enabled = true;
         novoObstaculo.GetComponent<Movimentoautomático>().enabled = true;
         novoObstaculo.GetComponent<ResonanceAudioSource>().enabled = true;
-        Debug.Log($"Obstáculo spawnado em {localSpawn.name} com posição X do jogador");
+        Debug.Log($"Obstáculo spawnado em {localSpawnC.name} com posição X do jogador");
     }
 
     private void SpawnarMoedas()
@@ -196,7 +196,7 @@ public class ItemSpawner : MonoBehaviour
         instanciado.GetComponent<AudioSource>().enabled = true;
         instanciado.GetComponent<ResonanceAudioSource>().enabled = true;
         instanciado.GetComponent<SomNoObstaculo>().enabled = true;
-        Debug.Log($"Moeda spawnada na posição contrária ao jogador: {localSpawn.position}");
+        Debug.Log($"Moeda spawnada na posição contrária ao jogador: {localSpawnM.position}");
     }
 
     private void SpawnarPassaro()
@@ -267,18 +267,18 @@ public class ItemSpawner : MonoBehaviour
     }
 
     // Seleciona o localSpawnM mas com a posição X contrária ao jogador
-    private Transform SelecionarLocalMoedaComPosicaoContraria()
+    private void SelecionarLocalMoedaComPosicaoContraria()
     {
         if (jogador == null || jogador.transform.position.x == 0)
         {
             Debug.LogWarning("Jogador não encontrado ou no centro da tela, usando spawn padrão");
-            return localSpawnM;
+             novaPosicao = localSpawnM.position;
         }
 
         if (localSpawnM == null)
         {
             Debug.LogError("localSpawnM não está atribuído!");
-            return null;
+            novaPosicao = localSpawnM.position;
         }
 
 
@@ -287,11 +287,11 @@ public class ItemSpawner : MonoBehaviour
             -jogador.transform.position.x, // Posição X contrária
             localSpawnM.position.y,
             localSpawnM.position.z
-
+            );
     }
 
     // Seleciona um local de spawn C mas com a posição X do jogador
-    private Transform SelecionarLocalObstaculoComPosicaoJogador()
+    private void SelecionarLocalObstaculoComPosicaoJogador()
     {
         // Cria uma nova posição mantendo Y e Z do local de spawn, mas com X do jogador
 			novaPosicao = new Vector3(
